@@ -21,7 +21,6 @@ public class Main {
             clickLeft ( 980,520 );
             Thread.sleep(3000);
             Thread.interrupted();
-            keyPress(72);
             writeText ();
 
         } catch (AWTException e) {
@@ -30,9 +29,6 @@ public class Main {
             e.printStackTrace ( );
         }
         System.out.println("Hello World!");
-    }
-
-    private static void keyPress(int i) {
     }
 
 
@@ -52,14 +48,17 @@ public class Main {
 
     public static void writeText() throws AWTException, InterruptedException {
         Robot bot = new Robot();
+
         bot.keyPress ( VK_H );
         bot.keyRelease ( VK_H );
         Thread.sleep(1000);
         Thread.interrupted();
+
         bot.keyPress ( VK_E );
         bot.keyRelease ( VK_E );
         Thread.sleep(1000);
         Thread.interrupted();
+
         bot.keyPress ( VK_L );
         bot.keyRelease ( VK_L );
         Thread.sleep(1000);
