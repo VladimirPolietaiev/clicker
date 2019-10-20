@@ -15,10 +15,13 @@ public class Main {
             clickRigth ( 700,10 );
             Thread.sleep(3000);
             Thread.interrupted();
-            clickLeft ( 760,255 );
+            mouseMove(700,10,750,260,1000, 2000 );
+            clickLeft ( 750,260 );
             Thread.sleep(3000);
             Thread.interrupted();
-            clickLeft ( 980,510 );
+            mouseMove(750,260,1080,260,1000, 3000 );
+            mouseMove(1080,260,1100,510,1000, 4000 );
+            clickLeft ( 1100,510 );
             Thread.sleep(3000);
             Thread.interrupted();
             writeText ();
@@ -30,7 +33,6 @@ public class Main {
         }
         System.out.println("Hello World!");
     }
-
 
     public static void clickRigth(int x, int y) throws AWTException{
         Robot bot = new Robot();
@@ -157,6 +159,23 @@ public class Main {
         bot.keyRelease ( VK_D );
 
 
+    }
+
+    public static void mouseMove(int x1, int y1, int x2, int y2, int t, int n){
+        try {
+            Robot bot = new Robot();
+            double dx = (x2 - x1) / ((double) n);
+            double dy = (y2 - y1) / ((double) n);
+            double dt = t / ((double) n);
+            for (int step = 1; step <= n; step++) {
+                Thread.sleep((int) dt);
+                bot.mouseMove((int) (x1 + dx * step), (int) (y1 + dy * step));
+            }
+        } catch (AWTException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 }
