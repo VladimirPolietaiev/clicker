@@ -10,21 +10,40 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            Thread.sleep(6000);
+            Thread.sleep(1000);
             Thread.interrupted();
             clickRigth ( 700,10 );
-            Thread.sleep(3000);
+            Thread.sleep(500);
             Thread.interrupted();
-            mouseMove(700,10,750,260,1000, 2000 );
+            mouseMove(700,10,750,260,1, 100 );
             clickLeft ( 750,260 );
-            Thread.sleep(3000);
+            Thread.sleep(500);
             Thread.interrupted();
-            mouseMove(750,260,1080,260,1000, 3000 );
-            mouseMove(1080,260,1100,510,1000, 4000 );
+            mouseMove(750,260,1080,260,1, 100 );
+            mouseMove(1080,260,1100,510,1, 100 );
             clickLeft ( 1100,510 );
-            Thread.sleep(3000);
+            Thread.sleep(1000);
             Thread.interrupted();
             writeText ();
+            Thread.sleep(1000);
+            Thread.interrupted();
+            mouseMove(1100,510,1120,100,1, 50 );
+            Thread.sleep(500);
+            Thread.interrupted();
+            clickLeft ( 1120,100 );
+            Thread.sleep(500);
+            Thread.interrupted();
+            mouseMove(1120,100,620,450,1, 50 );
+            clickLeft ( 620,450 );
+            Thread.sleep(500);
+            Thread.interrupted();
+            mouseMove(620,450,720,40,1, 50 );
+            clickLeft ( 720,40 );
+            clickLeft ( 720,40 );
+            Thread.sleep(500);
+            Thread.interrupted();
+            mouseMove(720,40,1120,100,1, 50 );
+            clickLeft ( 1120,100 );
 
         } catch (AWTException e) {
             e.printStackTrace ( );
