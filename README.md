@@ -1,3 +1,7 @@
+add clickerMovieCloseCheck
+
+![](clickerMovieCloseCheck.gif)
+
 add clicker Movie mouse
 
 ![](clickerMovie.gif)
