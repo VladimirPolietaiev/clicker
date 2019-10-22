@@ -50,7 +50,7 @@ public class Main {
             mouseMove(720,40,1120,100,1, 50 );
             clickLeft ( 1120,100 );
 
-            writeScreen();
+            writeScreenFull ();
 
         } catch (AWTException e) {
             e.printStackTrace ( );
@@ -221,7 +221,7 @@ public class Main {
     }
 
     ///////name file consist of "yyyyMMdd hh mm ss a"
-    public static void writeScreen( ){
+    public static void writeScreenFull( ){
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd hh mm ss a");
         Calendar now = Calendar.getInstance();
         try {
