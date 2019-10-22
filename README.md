@@ -1,6 +1,6 @@
 add screen full
 
-![](20191022 06 53 19 ПП.png)
+![](writeScreen.gif)
 
 
 add clickerMovieCloseCheck
