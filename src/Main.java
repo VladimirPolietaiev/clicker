@@ -51,6 +51,7 @@ public class Main {
             clickLeft ( 1120,100 );
 
             writeScreenFull ();
+            writeScreenWindow();
 
         } catch (AWTException e) {
             e.printStackTrace ( );
@@ -231,6 +232,41 @@ public class Main {
         }
     }
 
+    public static BufferedImage grabScreenWindow(){
+            int x = 600;
+            int y = 10;
+            int width = 200;
+            int height = 200;
+        try {
+            return new Robot().createScreenCapture(new Rectangle(x, y, width, height)) ;
+        } catch (SecurityException e) {
+        } catch (AWTException e) {
+        }
+        return null;
+//        try {
+//            Robot robot = new Robot();
+//// Захват определенной области на экране
+//            int x = 100;
+//            int y = 100;
+//            int width = 200;
+//            int height = 200;
+//            Rectangle area = new Rectangle(x, y, width, height);
+//            BufferedImage bufferedImage = robot.createScreenCapture ( area );
+//
+//        } catch (AWTException e) {
+//        }
+//        return null;
+    }
+
+    public static void writeScreenWindow( ){
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd hh mm ss a");
+        Calendar now = Calendar.getInstance();
+        try {
+            ImageIO.write(grabScreenWindow(), "png", new File(getHomeDir(), "/screens/"+"scrWindow" + formatter.format(now.getTime())+".png"));
+        } catch (IOException e) {
+            System.out.println("IO exception"+e);
+        }
+    }
 
 
 }
