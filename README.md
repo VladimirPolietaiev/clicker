@@ -1,4 +1,4 @@
-add screen full
+add screen full and window
 
 ![](writeScreen.gif)
 
