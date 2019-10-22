@@ -1,7 +1,12 @@
+import javax.imageio.ImageIO;
+import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
 import java.awt.event.InputEvent;
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import static java.awt.event.KeyEvent.*;
 
@@ -44,6 +49,8 @@ public class Main {
             Thread.interrupted();
             mouseMove(720,40,1120,100,1, 50 );
             clickLeft ( 1120,100 );
+
+            writeScreen();
 
         } catch (AWTException e) {
             e.printStackTrace ( );
@@ -196,5 +203,34 @@ public class Main {
             e.printStackTrace();
         }
     }
+
+
+
+    private static BufferedImage grabScreen() {
+        try {
+            return new Robot().createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize())) ;
+        } catch (SecurityException e) {
+        } catch (AWTException e) {
+        }
+        return null;
+    }
+
+    private static File getHomeDir() {
+        FileSystemView fsv = FileSystemView.getFileSystemView();
+        return fsv.getHomeDirectory();
+    }
+
+    ///////name file consist of "yyyyMMdd hh mm ss a"
+    public static void writeScreen( ){
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd hh mm ss a");
+        Calendar now = Calendar.getInstance();
+        try {
+            ImageIO.write(grabScreen(), "png", new File(getHomeDir(), "/screens/"+formatter.format(now.getTime())+".png"));
+        } catch (IOException e) {
+            System.out.println("IO exception"+e);
+        }
+    }
+
+
 
 }
