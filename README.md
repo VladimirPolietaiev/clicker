@@ -1,3 +1,8 @@
+add screen full and window
+
+![](writeScreen.gif)
+
+
 add clickerMovieCloseCheck
 
 ![](clickerMovieCloseCheck.gif)
