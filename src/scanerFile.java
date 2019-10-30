@@ -31,22 +31,70 @@ public class scanerFile {
                     int c = image1.getRGB(x,y);
                     Color color = new Color(c);
 
+
                     if (color.getRed() == 255 && color.getGreen() == 255 && color.getBlue() == 255) {
-                        System.out.println ( "scaner found white point " +x+ " , " + y);
-                        cointColorPoint++;
+                        System.out.println ( "scan= " + x + " ^ " + y);
+                        y = y + 4;
+                        System.out.println ( "scan= " + x + " ^ " + y);
+                        if (color.getRed ( ) == 255 && color.getGreen ( ) == 255 && color.getBlue ( ) == 255) {
+                            y = y + 4;
+                            System.out.println ( "scan= " + x + " ^ " + y);
+                            if (color.getRed ( ) == 255 && color.getGreen ( ) == 255 && color.getBlue ( ) == 255) {
+                                x = x + 6;
+                                System.out.println ( "scan= " + x + " ^ " + y);
+                                if (color.getRed ( ) == 255 && color.getGreen ( ) == 255 && color.getBlue ( ) == 255) {
+                                    y = y - 4;
+                                    System.out.println ( "scan= " + x + " ^ " + y);
+                                    if (color.getRed ( ) == 255 && color.getGreen ( ) == 255 && color.getBlue ( ) == 255) {
+                                        y = y - 4;
+                                        System.out.println ( "scan= " + x + " ^ " + y);
+                                        if (color.getRed ( ) == 255 && color.getGreen ( ) == 255 && color.getBlue ( ) == 255) {
+                                            x = x + 3;
+                                            System.out.println ( "scan= " + x + " ^ " + y);
+                                            if (color.getRed ( ) == 255 && color.getGreen ( ) == 255 && color.getBlue ( ) == 255) {
+                                                y = y + 4;
+                                                System.out.println ( "scan= " + x + " ^ " + y);
+                                                if (color.getRed ( ) == 255 && color.getGreen ( ) == 255 && color.getBlue ( ) == 255) {
+                                                    y = y + 4;
+                                                    System.out.println ( "scan= " + x + " ^ " + y);
+                                                    if (color.getRed ( ) == 255 && color.getGreen ( ) == 255 && color.getBlue ( ) == 255) {
+                                                        x = x + 3;
+                                                        System.out.println ( "scan= " + x + " ^ " + y);
+                                                        if (color.getRed ( ) == 255 && color.getGreen ( ) == 255 && color.getBlue ( ) == 255) {
+                                                            y = y - 4;
+                                                            System.out.println ( "scan= " + x + " ^ " + y);
+                                                            if (color.getRed ( ) == 255 && color.getGreen ( ) == 255 && color.getBlue ( ) == 255) {
+                                                                y = y - 4;
+                                                                System.out.println ( "scan= " + x + " ^ " + y);
+                                                                if (color.getRed ( ) == 255 && color.getGreen ( ) == 255 && color.getBlue ( ) == 255) {
+//                                                                    System.out.println ( "scaner found white point " + x + " , " + y );
+                                                                    cointColorPoint++;
+                                                                    out.write("WhitePixel found at=" + x + "," + y);
+                                                                    out.newLine();
+                                                                }
 
-                        out.write("CyanPixel found at=" + x + "," + y);
-                        out.newLine();
-
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
+
+
                 }
             }
             System.out.println ( "scaner found cointColorPoint  " + cointColorPoint);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        System.out.println ( "scaner the end  ");
     }
+
     private static File getHomeDir() {
         FileSystemView fsv = FileSystemView.getFileSystemView();
         return fsv.getHomeDirectory();
