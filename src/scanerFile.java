@@ -4,95 +4,70 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.channels.ReadableByteChannel;
 import javax.imageio.ImageIO;
 import javax.swing.filechooser.FileSystemView;
 
 public class scanerFile {
     public static void main(String args[]) throws IOException{
-        try {
-            //read image file
-            File file1 = new File(getHomeDir()+"/screens/scrWindow20191022 07 02 43 ПП.png");
-            BufferedImage image1 = ImageIO.read(file1);
+        final File folder = new File(getHomeDir()+ "/screens/");
 
-            System.out.println ( "file was reading");
+        listFilesForFolder(folder );
 
-            //write file
-            FileWriter fstream = new FileWriter(getHomeDir()+"/screens/rezScan.txt");
-            BufferedWriter out = new BufferedWriter(fstream);
+    }
 
-            int cointColorPoint = 0;
-            for (int y = 0; y < image1.getHeight(); y++) {
+    public static void scanOneFile( String fileName){
+
+            try {
+                //read image file
+                File file1 = new File(getHomeDir()+"/screens/" + fileName);
+                BufferedImage image1 = ImageIO.read(file1);
+
+
+//                listFilesForFolder( folder);
+                System.out.println ( "-----------------------");
+                System.out.println ( "scanner file : " + fileName + "  start  ");
+
+                //write file
+                FileWriter fstream = new FileWriter(getHomeDir()+"/screens/rezScan.txt");
+                BufferedWriter out = new BufferedWriter(fstream);
+
+                int cointColorPoint = 0;
+                for (int y = 0; y < image1.getHeight(); y++) {
 //                System.out.println ( "getHeight()=" + image1.getHeight ());
 //                System.out.println ( "scan= y:" + y);
 
-                for (int x = 0; x < image1.getWidth(); x++) {
+                    for (int x = 0; x < image1.getWidth(); x++) {
 //                    System.out.println ( "scan= x:" + x);
 //                    System.out.println ( "getWidth()=" + image1.getWidth ());
-                    int c = image1.getRGB(x,y);
-                    Color color = new Color(c);
+                        int c = image1.getRGB(x,y);
+                        Color color = new Color(c);
 
 
-                    if (color.getRed() == 255 && color.getGreen() == 255 && color.getBlue() == 255) {
-                        System.out.println ( "scan= " + x + " ^ " + y);
-                        y = y + 4;
-                        System.out.println ( "scan= " + x + " ^ " + y);
-                        if (color.getRed ( ) == 255 && color.getGreen ( ) == 255 && color.getBlue ( ) == 255) {
-                            y = y + 4;
+                        while(color.getRed() == 255 && color.getGreen() == 255 && color.getBlue() == 255) {
                             System.out.println ( "scan= " + x + " ^ " + y);
-                            if (color.getRed ( ) == 255 && color.getGreen ( ) == 255 && color.getBlue ( ) == 255) {
-                                x = x + 6;
-                                System.out.println ( "scan= " + x + " ^ " + y);
-                                if (color.getRed ( ) == 255 && color.getGreen ( ) == 255 && color.getBlue ( ) == 255) {
-                                    y = y - 4;
-                                    System.out.println ( "scan= " + x + " ^ " + y);
-                                    if (color.getRed ( ) == 255 && color.getGreen ( ) == 255 && color.getBlue ( ) == 255) {
-                                        y = y - 4;
-                                        System.out.println ( "scan= " + x + " ^ " + y);
-                                        if (color.getRed ( ) == 255 && color.getGreen ( ) == 255 && color.getBlue ( ) == 255) {
-                                            x = x + 3;
-                                            System.out.println ( "scan= " + x + " ^ " + y);
-                                            if (color.getRed ( ) == 255 && color.getGreen ( ) == 255 && color.getBlue ( ) == 255) {
-                                                y = y + 4;
-                                                System.out.println ( "scan= " + x + " ^ " + y);
-                                                if (color.getRed ( ) == 255 && color.getGreen ( ) == 255 && color.getBlue ( ) == 255) {
-                                                    y = y + 4;
-                                                    System.out.println ( "scan= " + x + " ^ " + y);
-                                                    if (color.getRed ( ) == 255 && color.getGreen ( ) == 255 && color.getBlue ( ) == 255) {
-                                                        x = x + 3;
-                                                        System.out.println ( "scan= " + x + " ^ " + y);
-                                                        if (color.getRed ( ) == 255 && color.getGreen ( ) == 255 && color.getBlue ( ) == 255) {
-                                                            y = y - 4;
-                                                            System.out.println ( "scan= " + x + " ^ " + y);
-                                                            if (color.getRed ( ) == 255 && color.getGreen ( ) == 255 && color.getBlue ( ) == 255) {
-                                                                y = y - 4;
-                                                                System.out.println ( "scan= " + x + " ^ " + y);
-                                                                if (color.getRed ( ) == 255 && color.getGreen ( ) == 255 && color.getBlue ( ) == 255) {
-//                                                                    System.out.println ( "scaner found white point " + x + " , " + y );
-                                                                    cointColorPoint++;
-                                                                    out.write("WhitePixel found at=" + x + "," + y);
-                                                                    out.newLine();
-                                                                }
+                            c = image1.getRGB ( x, y );
+                            color = new Color ( c );
 
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
+                            while(color.getRed() == 255 && color.getGreen() == 255 && color.getBlue() == 255) {
+                                System.out.println ( "scan= " + x + " ^ " + y);
+                                c = image1.getRGB ( x, y );
+                                color = new Color ( c );
+                                x = x + 6;
                             }
+                            y = y + 4;
+                            cointColorPoint++;
+                            out.write("WhitePixel found at=" + x + "," + y);
+                            out.newLine();
                         }
                     }
-
-
                 }
+                System.out.println ( "scaner found cointColorPoint  " + cointColorPoint);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            System.out.println ( "scaner found cointColorPoint  " + cointColorPoint);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println ( "scaner the end  ");
+            System.out.println ( "scanner file : " + fileName + "  finished  ");
+            System.out.println ( "-----------------------");
     }
 
     private static File getHomeDir() {
@@ -100,5 +75,23 @@ public class scanerFile {
         return fsv.getHomeDirectory();
     }
 
+    public static void listFilesForFolder(File folder) {
+        String temp = "";
+        for (final File fileEntry : folder.listFiles()) {
+            if (fileEntry.isDirectory()) {
+                // System.out.println("Reading files under the folder "+folder.getAbsolutePath());
+                listFilesForFolder(fileEntry);
+            } else {
+                if (fileEntry.isFile()) {
+                    temp = fileEntry.getName();
+                    if ((temp.substring(temp.lastIndexOf('.') + 1, temp.length()).toLowerCase()).equals("png"))
+                        scanOneFile ( fileEntry.getName () );
+                        System.out.println("File= " + folder.getAbsolutePath()+ "\\" + fileEntry.getName());
+                        System.out.println("File name= "  + fileEntry.getName());
+                }
+
+            }
+        }
+    }
 
 }
