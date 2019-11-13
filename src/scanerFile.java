@@ -29,10 +29,10 @@ public class scanerFile {
                 System.out.println ( "scanner file : " + fileName + "  start  ");
 
                 //write file
-                FileWriter fstream = new FileWriter(getHomeDir()+"/screens/rezScan.txt");
+                FileWriter fstream = new FileWriter(getHomeDir()+"/screens/rezScan.txt",false);
                 BufferedWriter out = new BufferedWriter(fstream);
 
-                int cointColorPoint = 0;
+
                 for (int y = 0; y < image1.getHeight(); y++) {
 //                System.out.println ( "getHeight()=" + image1.getHeight ());
 //                System.out.println ( "scan= y:" + y);
@@ -43,31 +43,53 @@ public class scanerFile {
                         int c = image1.getRGB(x,y);
                         Color color = new Color(c);
 
-
+                        int rezultcointXpoint=0;
+                        int rezultcointYpoint=0;
+                        int cointXpoint= 0;
+                        int cointYPoint= 0;
                         while(color.getRed() == 255 && color.getGreen() == 255 && color.getBlue() == 255) {
                             System.out.println ( "scan= " + x + " ^ " + y);
                             c = image1.getRGB ( x, y );
                             color = new Color ( c );
 
+
+
+
                             while(color.getRed() == 255 && color.getGreen() == 255 && color.getBlue() == 255) {
-                                System.out.println ( "scan= " + x + " ^ " + y);
+                                System.out.println ( "scan 2 = " + x + " ^ " + y);
                                 c = image1.getRGB ( x, y );
                                 color = new Color ( c );
                                 x = x + 6;
+                                cointXpoint++;
+                                if(cointXpoint == 3){
+                                     rezultcointXpoint = 1;
+                                }
                             }
                             y = y + 4;
-                            cointColorPoint++;
-                            out.write("WhitePixel found at=" + x + "," + y);
-                            out.newLine();
+                            cointYPoint++;
+
+                            if(cointYPoint == 3){
+                                rezultcointYpoint = 1;
+                            }
+
+                            System.out.println ( "rezultcointYpoint= " + rezultcointYpoint + " rezultcointXpoint " + rezultcointXpoint);
+                            if(rezultcointYpoint ==1 || rezultcointXpoint==1){
+                                System.out.println ( "rezultcointYpoint 2= " + rezultcointYpoint + " rezultcointXpoint 2 " + rezultcointXpoint);
+                                out.write("Found object in file " + fileName);
+                                out.newLine();
+                            }
                         }
+
+
                     }
                 }
-                System.out.println ( "scaner found cointColorPoint  " + cointColorPoint);
+                out.close ();
             } catch (IOException e) {
                 e.printStackTrace();
             }
             System.out.println ( "scanner file : " + fileName + "  finished  ");
             System.out.println ( "-----------------------");
+
     }
 
     private static File getHomeDir() {
