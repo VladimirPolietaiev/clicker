@@ -14,51 +14,45 @@ import static java.awt.event.KeyEvent.*;
 public class Main {
 
     public static void main(String[] args) {
-        try {
-            Thread.sleep(1000);
-            Thread.interrupted();
-            clickRigth ( 700,10 );
-            Thread.sleep(500);
-            Thread.interrupted();
-            mouseMove(700,10,750,260,1, 100 );
-            clickLeft ( 750,260 );
-            Thread.sleep(500);
-            Thread.interrupted();
-            mouseMove(750,260,1080,260,1, 100 );
-            mouseMove(1080,260,1100,510,1, 100 );
-            clickLeft ( 1100,510 );
-            Thread.sleep(1000);
-            Thread.interrupted();
-            writeText ();
-            Thread.sleep(1000);
-            Thread.interrupted();
-            mouseMove(1100,510,1120,100,1, 50 );
-            Thread.sleep(500);
-            Thread.interrupted();
-            clickLeft ( 1120,100 );
-            Thread.sleep(500);
-            Thread.interrupted();
-            mouseMove(1120,100,620,450,1, 50 );
-            clickLeft ( 620,450 );
-            Thread.sleep(500);
-            Thread.interrupted();
-            mouseMove(620,450,720,40,1, 50 );
-            clickLeft ( 720,40 );
-            clickLeft ( 720,40 );
-            Thread.sleep(500);
-            Thread.interrupted();
-            mouseMove(720,40,1120,100,1, 50 );
-            clickLeft ( 1120,100 );
+        //            Thread.sleep(1000);
+//            Thread.interrupted();
+//            clickRigth ( 700,10 );
+//            Thread.sleep(500);
+//            Thread.interrupted();
+//            mouseMove(700,10,750,260,1, 100 );
+//            clickLeft ( 750,260 );
+//            Thread.sleep(500);
+//            Thread.interrupted();
+//            mouseMove(750,260,1080,260,1, 100 );
+//            mouseMove(1080,260,1100,510,1, 100 );
+//            clickLeft ( 1100,510 );
+//            Thread.sleep(1000);
+//            Thread.interrupted();
+//            writeText ();
+//            Thread.sleep(1000);
+//            Thread.interrupted();
+//            mouseMove(1100,510,1120,100,1, 50 );
+//            Thread.sleep(500);
+//            Thread.interrupted();
+//            clickLeft ( 1120,100 );
+//            Thread.sleep(500);
+//            Thread.interrupted();
+//            mouseMove(1120,100,620,450,1, 50 );
+//            clickLeft ( 620,450 );
+//            Thread.sleep(500);
+//            Thread.interrupted();
+//            mouseMove(620,450,720,40,1, 50 );
+//            clickLeft ( 720,40 );
+//            clickLeft ( 720,40 );
+//            Thread.sleep(500);
+//            Thread.interrupted();
+//            mouseMove(720,40,1120,100,1, 50 );
+//            clickLeft ( 1120,100 );
 
-            writeScreenFull ();
-            writeScreenWindow();
+//        writeScreenFull ();
+        writeScreenWindow();
 
-        } catch (AWTException e) {
-            e.printStackTrace ( );
-        } catch (InterruptedException e) {
-            e.printStackTrace ( );
-        }
-        System.out.println("Hello World!");
+        System.out.println("The End App!!!");
     }
 
     public static void clickRigth(int x, int y) throws AWTException{
@@ -243,19 +237,6 @@ public class Main {
         } catch (AWTException e) {
         }
         return null;
-//        try {
-//            Robot robot = new Robot();
-//// Захват определенной области на экране
-//            int x = 100;
-//            int y = 100;
-//            int width = 200;
-//            int height = 200;
-//            Rectangle area = new Rectangle(x, y, width, height);
-//            BufferedImage bufferedImage = robot.createScreenCapture ( area );
-//
-//        } catch (AWTException e) {
-//        }
-//        return null;
     }
 
     public static void writeScreenWindow( ){

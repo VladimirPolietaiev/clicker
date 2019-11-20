@@ -11,77 +11,42 @@ import javax.swing.filechooser.FileSystemView;
 public class scanerFile {
     public static void main(String args[]) throws IOException{
         final File folder = new File(getHomeDir()+ "/screens/");
-
         listFilesForFolder(folder );
-
     }
 
     public static void scanOneFile( String fileName){
-
             try {
                 //read image file
                 File file1 = new File(getHomeDir()+"/screens/" + fileName);
                 BufferedImage image1 = ImageIO.read(file1);
-
-
-//                listFilesForFolder( folder);
                 System.out.println ( "-----------------------");
                 System.out.println ( "scanner file : " + fileName + "  start  ");
-
                 //write file
-                FileWriter fstream = new FileWriter(getHomeDir()+"/screens/rezScan.txt",false);
+                FileWriter fstream = new FileWriter(getHomeDir()+"/screens/rezScan.txt",true);
                 BufferedWriter out = new BufferedWriter(fstream);
 
-
+                int rezultcointYpoint=0;
                 for (int y = 0; y < image1.getHeight(); y++) {
-//                System.out.println ( "getHeight()=" + image1.getHeight ());
-//                System.out.println ( "scan= y:" + y);
-
                     for (int x = 0; x < image1.getWidth(); x++) {
-//                    System.out.println ( "scan= x:" + x);
-//                    System.out.println ( "getWidth()=" + image1.getWidth ());
                         int c = image1.getRGB(x,y);
                         Color color = new Color(c);
-
-                        int rezultcointXpoint=0;
-                        int rezultcointYpoint=0;
-                        int cointXpoint= 0;
                         int cointYPoint= 0;
                         while(color.getRed() == 255 && color.getGreen() == 255 && color.getBlue() == 255) {
                             System.out.println ( "scan= " + x + " ^ " + y);
                             c = image1.getRGB ( x, y );
                             color = new Color ( c );
-
-
-
-
-                            while(color.getRed() == 255 && color.getGreen() == 255 && color.getBlue() == 255) {
-                                System.out.println ( "scan 2 = " + x + " ^ " + y);
-                                c = image1.getRGB ( x, y );
-                                color = new Color ( c );
-                                x = x + 6;
-                                cointXpoint++;
-                                if(cointXpoint == 3){
-                                     rezultcointXpoint = 1;
-                                }
-                            }
-                            y = y + 4;
-                            cointYPoint++;
-
-                            if(cointYPoint == 3){
+                        y = y + 1;
+                        cointYPoint++;
+                            if(cointYPoint == 9){
                                 rezultcointYpoint = 1;
                             }
-
-                            System.out.println ( "rezultcointYpoint= " + rezultcointYpoint + " rezultcointXpoint " + rezultcointXpoint);
-                            if(rezultcointYpoint ==1 || rezultcointXpoint==1){
-                                System.out.println ( "rezultcointYpoint 2= " + rezultcointYpoint + " rezultcointXpoint 2 " + rezultcointXpoint);
-                                out.write("Found object in file " + fileName);
-                                out.newLine();
-                            }
                         }
-
-
                     }
+                }
+                if(rezultcointYpoint ==1 ){
+                    System.out.println ( "rezultcointYpoint = " + rezultcointYpoint);
+                    out.write("Found object in file " + fileName);
+                    out.newLine();
                 }
                 out.close ();
             } catch (IOException e) {
@@ -89,7 +54,6 @@ public class scanerFile {
             }
             System.out.println ( "scanner file : " + fileName + "  finished  ");
             System.out.println ( "-----------------------");
-
     }
 
     private static File getHomeDir() {
@@ -115,5 +79,4 @@ public class scanerFile {
             }
         }
     }
-
 }
