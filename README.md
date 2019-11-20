@@ -1,3 +1,10 @@
+working app "scanner"
+
+![](writeScreen2.gif)
+
+
+
+
 add screen full and window
 
 ![](writeScreen.gif)
